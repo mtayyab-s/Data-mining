@@ -1,0 +1,20 @@
+x = [5,10,20,30,50];% x-axis
+shape= {'ro','r^','r*','r+'};
+Col = {'b','r','m','g'};
+ for i =1:4   % set the value equal to the algorithms you implemented
+base = A(1,i); % selecting the baseline
+base = repmat(base,5,1); %repeating
+data = A(2:6,i);
+h(i)=plot(x,base,'color',Col{i});
+hold on
+plot(x,data,'color',Col{i});
+plot(x,data,shape{i},'color',Col{i});
+end
+ h1 = h(1);
+h2 = h(2);
+h3 = h(3);
+h4 = h(4);
+legend([h1 h2 h3 h4],{'knn','centroid','linear regression', 'SVM'});
+xlabel ('dimensions');
+ylabel('accauracy');
+title('Hand-Written-26-letters');

@@ -1,0 +1,20 @@
+A= csvread('c.txt');
+data = A(2:size(A,1),:);
+R = datasample(data,10,2,'Replace',false); % choosing random instances and populating the k clusters
+K = zeros(size(data,1),10);
+while R-K~=0
+for n=1:size(data,2)
+temp = data(:,n);
+temp2 = repmat(temp,1,size(R,2));
+diff = R - temp2;
+answer = sqrt(sum(diff.^2,1));
+[m i] = min(answer);
+clus(n)=i;
+K(:,i) = (R(:,i)+temp)/2;
+end
+R=K;
+end
+
+
+
+silhouette(X,clust)
